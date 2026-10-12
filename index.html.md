@@ -10,7 +10,7 @@ iPhone & iPad: coming soon to the App Store. Android: later.
 - Price: Free
 - Ads: None
 - Account: None
-- Network: Plays offline (iPhone, iPad, Android)
+- Network: the apps play offline; the web version needs a connection
 
 ## 01 Fair deal: you lose to your moves, never to luck
 
