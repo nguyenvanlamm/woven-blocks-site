@@ -1,0 +1,21 @@
+# Woven Blocks
+
+> Woven Blocks is a free block puzzle on an 8×8 board, playable now in a web browser, with iPhone and iPad coming soon to the App Store and Android later. Every tray of three pieces it deals can be placed in full, in some order, so a player loses to their own moves, never to luck. It has no ads, no account, no tracking and no in-app purchases.
+
+- Tap a piece to turn it a quarter turn (free), then drag it onto the board. Full rows and columns clear together.
+- Scoring: +1 per cell placed; each clear scores 10 × lines² × combo; an empty board is +300 "Perfect". The score prints its own sum under every clear, e.g. `+123 = 3 + 10 × 2² × 3`.
+- Combo: every placement that clears raises it; clear again within 3 placements or it resets.
+- Daily challenge: one board a day, the same for everyone; one run counts; streaks; a spoiler-free share text.
+- Saves after every move. The apps play offline. Light and dark themes. Statistics on the device only.
+- Not in the game: coins, lives, shop, leaderboards, accounts, undo, levels.
+
+## Pages
+
+- [Home](https://nguyenvanlamm.github.io/woven-blocks-site/index.html.md): what the game is, the fair deal, scoring, the daily challenge and where to get it
+- [Support](https://nguyenvanlamm.github.io/woven-blocks-site/support.html.md): contact, how to play and common questions
+- [Privacy Policy](https://nguyenvanlamm.github.io/woven-blocks-site/privacy.html.md): what stays on the device and what is never collected
+
+## Optional
+
+- [Play in your browser](https://nguyenvanlamm.github.io/woven-blocks-site/play/): the game itself (Flutter web build)
+- [Website](https://nguyenvanlamm.github.io/woven-blocks-site/): the HTML landing page

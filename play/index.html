@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Replaced by `flutter build web --base-href`; must start and end with "/".
+    Path URLs (no "#") need the host to rewrite unknown paths to index.html,
+    see README.md "Hosting the web build".
+  -->
+  <base href="/woven-blocks-site/play/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Woven Blocks — a fair, ad-free block puzzle. Every tray you are dealt can be placed. Plays offline, no tracking.">
+  <meta name="theme-color" content="#F3EEE4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#171513" media="(prefers-color-scheme: dark)">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Woven Blocks">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Woven Blocks — Block Puzzle</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Shown until Flutter paints its first frame (see the script below);
+       colours match the app's surfaces. */
+    html, body { margin: 0; height: 100%; background: #F3EEE4; }
+    @media (prefers-color-scheme: dark) { html, body { background: #171513; } }
+    #splash { position: fixed; inset: 0; display: grid; place-items: center; }
+    #splash svg { width: 72px; height: 72px; animation: turn 1.6s cubic-bezier(.3,.7,.4,1.3) infinite; }
+    @keyframes turn { 0%, 60% { transform: none; } 75%, 100% { transform: rotate(90deg); } }
+    @media (prefers-reduced-motion: reduce) { #splash svg { animation: none; } }
+  </style>
+</head>
+<body>
+  <div id="splash" aria-label="Loading Woven Blocks" role="progressbar">
+    <!-- The O of the name on Home: the ring tile, turning like a tray piece. -->
+    <svg viewBox="0 0 52 52" aria-hidden="true">
+      <rect width="52" height="52" rx="9" fill="#17705A"/>
+      <rect width="52" height="49" rx="9" fill="#24967A"/>
+      <circle cx="26" cy="24.5" r="7.6" fill="none" stroke="#FFFFFF" stroke-width="4.9"/>
+    </svg>
+  </div>
+  <script>
+    // Remove the HTML splash once Flutter has rendered its first frame.
+    window.addEventListener('flutter-first-frame', function () {
+      var s = document.getElementById('splash');
+      if (s) s.remove();
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

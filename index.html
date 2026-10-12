@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Woven Blocks — a fair block puzzle</title>
+<meta name="description" content="Woven Blocks is a fair block puzzle: every tray of three fits, the score shows its working, and there are no ads, no account and no tracking. Play free in your browser; iPhone and iPad coming soon.">
+<link rel="canonical" href="https://nguyenvanlamm.github.io/woven-blocks-site/">
+<link rel="alternate" type="text/markdown" href="index.html.md">
+<link rel="describedby" href="llms.txt">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F3EEE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171513" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Woven Blocks">
+<meta property="og:url" content="https://nguyenvanlamm.github.io/woven-blocks-site/">
+<meta property="og:title" content="Woven Blocks — Every tray fits.">
+<meta property="og:description" content="A fair block puzzle. Turn pieces, clear lines, keep the combo. No ads, ever. Play free in your browser.">
+<meta property="og:image" content="https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Woven Blocks: Every tray fits. A fair block puzzle, no ads. An 8 by 8 board where two rows have just cleared, with the score's sum, +123 = 3 + 10 × 2² × 3.">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Once the iOS app is live, add the Safari Smart App Banner:
+<meta name="apple-itunes-app" content="app-id=XXXXXXXXXX"> -->
+<link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/HankenGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/HankenGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://nguyenvanlamm.github.io/woven-blocks-site/#website",
+      "url": "https://nguyenvanlamm.github.io/woven-blocks-site/",
+      "name": "Woven Blocks",
+      "inLanguage": "en",
+      "about": {
+        "@id": "https://nguyenvanlamm.github.io/woven-blocks-site/#game"
+      }
+    },
+    {
+      "@type": "VideoGame",
+      "@id": "https://nguyenvanlamm.github.io/woven-blocks-site/#game",
+      "name": "Woven Blocks",
+      "url": "https://nguyenvanlamm.github.io/woven-blocks-site/",
+      "description": "A fair block puzzle on an 8×8 board. Every tray of three pieces can be placed in some order. Tap a piece to turn it, clear rows and columns, keep the combo. Free, with no ads, no account and no tracking. Playable in a web browser; iPhone and iPad coming soon to the App Store.",
+      "genre": "Puzzle",
+      "playMode": "SinglePlayer",
+      "gamePlatform": [
+        "Web browser"
+      ],
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Puzzle",
+      "operatingSystem": "Any modern web browser",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "image": "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/share-card.png",
+      "screenshot": [
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/clear.webp",
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/rotate.webp",
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/daily.webp",
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/dailyDone.webp",
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/home.webp",
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/dark.webp",
+        "https://nguyenvanlamm.github.io/woven-blocks-site/assets/img/shots/gameover.webp"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "url": "https://nguyenvanlamm.github.io/woven-blocks-site/play/"
+      },
+      "potentialAction": {
+        "@type": "PlayAction",
+        "target": "https://nguyenvanlamm.github.io/woven-blocks-site/play/"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- glyph sprite: the seven tile marks -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="g1" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4.4" fill="currentColor"/></symbol>
+  <symbol id="g2" viewBox="0 0 20 20"><rect x="3.6" y="7.8" width="12.8" height="4.4" rx="2.2" fill="currentColor"/></symbol>
+  <symbol id="g3" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4.5" fill="none" stroke="currentColor" stroke-width="2.9"/></symbol>
+  <symbol id="g4" viewBox="0 0 20 20"><rect x="5.2" y="4.2" width="3.4" height="11.6" rx="1.7" fill="currentColor"/><rect x="11.4" y="4.2" width="3.4" height="11.6" rx="1.7" fill="currentColor"/></symbol>
+  <symbol id="g5" viewBox="0 0 20 20"><path d="M5.6 14.4 L14.4 5.6" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="g6" viewBox="0 0 20 20"><path d="M10 4.4 L15.8 14.8 H4.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></symbol>
+  <symbol id="g7" viewBox="0 0 20 20"><path d="M10 3.8 L16.2 10 L10 16.2 L3.8 10 Z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="frame">
+    <a class="brand" href="#top" aria-label="Woven Blocks, back to top">
+      <span class="wm wm--mini" aria-hidden="true">
+        <span class="wm-row"><span class="wm-t">W</span><span class="wm-t t k3"><svg><use href="#g3"/></svg></span><span class="wm-t">V</span><span class="wm-t">E</span><span class="wm-t">N</span></span>
+        <span class="wm-row"><span class="wm-t">B</span><span class="wm-t">L</span><span class="wm-t t k3"><svg><use href="#g3"/></svg></span><span class="wm-t">C</span><span class="wm-t">K</span><span class="wm-t">S</span></span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#fair">Fair deal</a><a href="#score">Score</a><a href="#daily">Daily</a><a href="#get">Get it</a>
+    </nav>
+    <a class="btn btn--ink btn--sm" href="play/">Play <span class="arw" aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ================= hero ================= -->
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="frame row">
+    <div class="hero-copy pad">
+      <p class="kicker label"><span>Block puzzle</span><span>iPhone · iPad · Android · Web</span></p>
+      <h1 id="hero-h">Every tray fits.</h1>
+      <p class="lede">A fair block puzzle. Turn pieces, clear lines, keep the combo. <b>No&nbsp;ads, ever.</b></p>
+      <div class="cta">
+        <a class="btn btn--ink" href="play/">Play in your browser <span class="arw" aria-hidden="true">→</span></a>
+        <p class="cta-note">iPhone &amp; iPad: coming soon to the App Store. Android: later.</p>
+      </div>
+    </div>
+    <figure class="demo" id="demo" aria-label="One real move, replayed: a piece is turned, placed, two rows clear and the score prints its sum">
+     <div class="demo-in">
+      <p class="demo-l label"><span>Fig. 0</span><span>One real move, replayed</span></p>
+      <div class="ro">
+        <span class="ro-num" id="d-score">1,240</span>
+        <span class="ro-x" id="d-combo">×2</span>
+        <span class="ro-best">Best <b>2,860</b></span>
+        <span class="ro-fuse"><span class="fuse" id="d-fuse" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span id="d-left">2 moves left</span></span>
+        <span class="ro-eq" id="d-eq"></span>
+      </div>
+      <div class="bd-wrap">
+        <ol class="ridx" id="d-idx" aria-hidden="true"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ol>
+        <div class="bd" id="d-board" role="img" aria-label="8 by 8 board"></div>
+      </div>
+      <div class="tray" id="d-tray" aria-hidden="true"><div class="slot"></div><div class="slot"></div><div class="slot"></div></div>
+      <figcaption class="demo-cap">
+        <span class="step" id="d-step" aria-live="polite"><b>0/4</b><span>A tray of three. Every tray fits.</span></span>
+        <button class="replay" id="d-replay" type="button"><span class="tri" aria-hidden="true"></span><span id="d-replay-l">Replay</span></button>
+      </figcaption>
+     </div>
+    </figure>
+    <dl class="spec pad" aria-label="The game in six facts">
+        <div><dt>Board</dt><dd>8 × 8</dd></div>
+        <div><dt>Tray</dt><dd>3 pieces</dd></div>
+        <div><dt>Price</dt><dd>Free</dd></div>
+        <div><dt>Ads</dt><dd>None</dd></div>
+        <div><dt>Account</dt><dd>None</dd></div>
+        <div><dt>Network</dt><dd>Plays offline</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================= 01 fair deal ================= -->
+<section class="sec ruled" id="fair" aria-labelledby="fair-h">
+  <div class="frame row">
+    <p class="sec-k label pad"><span class="n">01</span><span>Fair deal</span></p>
+    <div class="sec-main">
+      <h2 id="fair-h">You lose to your moves, never to luck.</h2>
+      <div class="l3">
+        <p class="body">Every tray of three you are dealt can be placed in full, in some order. If you get stuck, the order was the problem, not luck.</p>
+        <p class="body muted">The game ends only when no piece fits anywhere, in any turn.</p>
+        <div class="trayfig">
+          <span class="label figlabel">Fig. 1 — A tray. Tap a piece to turn it.</span>
+          <div class="tray-big" id="turn-tray"></div>
+          <div class="bracket" aria-hidden="true"></div>
+          <p class="bracket-l">All three fit, in some order.<br><span class="muted">Turning is free: a quarter turn per tap.</span></p>
+        </div>
+      </div>
+      <div class="r3 phones">
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/rotate.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Woven Blocks in play: score 1,240, combo ×2, the green T piece in the tray turned a quarter turn."></div>
+          <figcaption><span class="label">Fig. 2</span>The T piece, turned in the tray.</figcaption>
+        </figure>
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/gameover.webp" width="660" height="1434" loading="lazy" decoding="async" alt="Game over screen, dark theme: The board is full. New best 3,141, 41 lines, best combo ×6."></div>
+          <figcaption><span class="label">Fig. 3</span>The only ending: the board is full.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 score ================= -->
+<section class="sec ruled" id="score" aria-labelledby="score-h">
+  <div class="frame row">
+    <p class="sec-k label pad"><span class="n">02</span><span>Score</span></p>
+    <div class="sec-main">
+      <h2 id="score-h">The score shows its working.</h2>
+      <p class="body l4">Under every clear the game prints the sum that made it. This one is the move replayed at the top of the page: three cells placed, two rows cleared, combo ×3.</p>
+      <figure class="eqfig" aria-label="+123 equals 3 plus 10 times 2 squared times 3">
+        <div class="eq" aria-hidden="true">
+          <span class="term"><span>+123</span></span>
+          <span class="op">=</span>
+          <span class="term"><span>3</span><span class="br"></span><span class="bn">1</span></span>
+          <span class="op">+</span>
+          <span class="term"><span>10<span class="op">×</span>2<span class="sq">²</span></span><span class="br"></span><span class="bn">2</span></span>
+          <span class="op">×</span>
+          <span class="term"><span>3</span><span class="br"></span><span class="bn">3</span></span>
+        </div>
+        <ol class="eqkey">
+          <li><span class="bn">1</span><span>3 cells placed, +1 each.</span></li>
+          <li><span class="bn">2</span><span>A clear: 10 × lines². Two lines at once, so 2².</span></li>
+          <li><span class="bn">3</span><span>The combo, raised from ×2 to ×3 by this clear.</span></li>
+        </ol>
+      </figure>
+
+      <div class="l4 mt">
+        <h3>Scoring, in full</h3>
+        <table class="score-tab">
+          <tr><th scope="row">Each cell you place</th><td>+1</td></tr>
+          <tr><th scope="row">Each clear</th><td>10 × lines² × combo</td></tr>
+          <tr><th scope="row">Empty board, “Perfect”</th><td>+300</td></tr>
+        </table>
+        <p class="body muted">Full rows and columns clear at the same time.</p>
+
+        <div class="combo">
+          <h3>Keep the combo.</h3>
+          <p class="body">Every placement that clears raises the combo. Clear again within three placements or it resets. The fuse shows how many are left.</p>
+          <ol class="fuse-seq" aria-label="How the fuse burns down">
+            <li><span class="ev">Clear</span><span class="x">×3</span><span class="fuse" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span>3 moves left</span></li>
+            <li><span class="ev">Place</span><span class="x">×3</span><span class="fuse" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span><span>2 moves left</span></li>
+            <li><span class="ev">Place</span><span class="x">×3</span><span class="fuse" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span>1 move left</span></li>
+            <li><span class="ev">Place</span><span class="x" aria-label="no combo">—</span><span class="fuse" aria-hidden="true"><i></i><i></i><i></i></span><span>Combo resets</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="r2 mt">
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/clear.webp" width="660" height="1434" loading="lazy" decoding="async" alt="Right after a two-line clear: score 1,363, combo ×3, 3 moves left, and the line +123 = 3 + 10 × 2² × 3 under the score."></div>
+          <figcaption><span class="label">Fig. 4</span>The same move in the app. The sum sits under the score.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 daily ================= -->
+<section class="sec ruled" id="daily" aria-labelledby="daily-h">
+  <div class="frame row">
+    <p class="sec-k label pad"><span class="n">03</span><span>Daily</span></p>
+    <div class="sec-main">
+      <h2 id="daily-h">One board a day.</h2>
+      <div class="l3 phones mt">
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/daily.webp" width="660" height="1434" loading="lazy" decoding="async" alt="Daily screen for Monday, October 12: run in progress, 460 points so far, a 7-day streak chart."></div>
+          <figcaption><span class="label">Fig. 5</span>In progress. One run counts.</figcaption>
+        </figure>
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/dailyDone.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Daily done: 2,040 points today, Share button, 8-day streak chart."></div>
+          <figcaption><span class="label">Fig. 6</span>Done. Next board at midnight.</figcaption>
+        </figure>
+      </div>
+      <div class="r3 mt">
+        <p class="body" style="margin-top:0">The same daily board for everyone, today only. One run counts. Keep the streak, and share the result without giving the board away.</p>
+        <div class="share">
+          <div class="share-h"><span class="label">Share text</span><span class="label">No spoilers</span></div>
+          <pre>Woven Blocks · Daily · Oct 12, 2026
+2,040 points · 8-day streak
+▅ ▄ ▆ ▆ █ ▇ ▇ ▇</pre>
+        </div>
+        <div class="streak">
+          <span class="label">The streak: eight days, eight cells</span>
+          <div class="streak-row" id="streak" aria-label="Eight days played in a row: 1,320, 980, 1,710, 1,460, 2,210, 1,890, 2,040 and 2,040 today"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 left alone ================= -->
+<section class="sec ruled" id="alone" aria-labelledby="alone-h">
+  <div class="frame row">
+    <p class="sec-k label pad"><span class="n">04</span><span>Left alone</span></p>
+    <div class="sec-main">
+      <h2 id="alone-h">Left alone.</h2>
+      <div class="l3">
+        <p class="body">Plays offline. Saves after every move. No ads, no account, no tracking. Light and dark.</p>
+        <dl class="sheet">
+          <div><dt>Ads</dt><dd>None, ever.</dd></div>
+          <div><dt>Account</dt><dd>None. Nothing to sign in to.</dd></div>
+          <div><dt>Tracking</dt><dd>None.</dd></div>
+          <div><dt>Network</dt><dd>Not needed. Plays offline.</dd></div>
+          <div><dt>Saving</dt><dd>After every move.</dd></div>
+          <div><dt>Themes</dt><dd>Light and dark.</dd></div>
+          <div><dt>Settings</dt><dd>Sound and vibration, on or off.</dd></div>
+          <div><dt>Statistics</dt><dd>Best score, games, average, lines, best combo, streaks.</dd></div>
+        </dl>
+        <div class="not">
+          <span class="label">Not in the game</span>
+          <ul aria-label="Not in the game">
+            <li>Coins</li><li>Lives</li><li>Shop</li><li>Leaderboards</li><li>Accounts</li><li>Undo</li><li>Levels</li>
+          </ul>
+        </div>
+      </div>
+      <div class="r3 phones">
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/home.webp" width="660" height="1434" loading="lazy" decoding="async" alt="Home screen, light theme: the Woven Blocks wordmark, Continue 1,240, New game, the daily streak row, How to play, Stats, Settings."></div>
+          <figcaption><span class="label">Fig. 7</span>Light.</figcaption>
+        </figure>
+        <figure class="ph">
+          <div class="ph-scr"><img src="assets/img/shots/dark.webp" width="660" height="1434" loading="lazy" decoding="async" alt="The same home screen in the dark theme."></div>
+          <figcaption><span class="label">Fig. 8</span>Dark.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 get it ================= -->
+<section class="sec ruled" id="get" aria-labelledby="get-h">
+  <div class="frame row">
+    <p class="sec-k label pad"><span class="n">05</span><span>Get it</span></p>
+    <div class="sec-main">
+      <h2 id="get-h">Play it today, in your browser.</h2>
+      <ul class="get">
+        <li>
+          <span class="plat">Web browser</span>
+          <span class="stat"><span class="label">Available</span>Free. Any phone, tablet or computer.</span>
+          <a class="btn btn--ink act" href="play/">Play in your browser <span class="arw" aria-hidden="true">→</span></a>
+        </li>
+        <li>
+          <span class="plat">iPhone &amp; iPad</span>
+          <span class="stat"><span class="label">Status</span>Coming soon to the App Store.</span>
+        </li>
+        <li>
+          <span class="plat">Android</span>
+          <span class="stat"><span class="label">Status</span>Coming later.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ruled">
+  <div class="frame foot">
+    <div class="row">
+      <div class="foot-wm pad">
+        <span class="label" style="display:block;margin-bottom:16px">Tap a tile to turn it</span>
+        <div class="wm" id="foot-wm" aria-hidden="true">
+          <span class="wm-row"><span class="wm-t">W</span><span class="wm-t t k3"><svg><use href="#g3"/></svg></span><span class="wm-t">V</span><span class="wm-t">E</span><span class="wm-t">N</span></span>
+          <span class="wm-row"><span class="wm-t">B</span><span class="wm-t">L</span><span class="wm-t t k3"><svg><use href="#g3"/></svg></span><span class="wm-t">C</span><span class="wm-t">K</span><span class="wm-t">S</span></span>
+        </div>
+      </div>
+      <div class="foot-r pad">
+        <ul class="foot-links">
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="play/">Play</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pad"><div class="foot-meta label"><span>© 2026 Woven Blocks</span><span>Made by one independent developer</span></div></div>
+  </div>
+</footer>
+
+</body>
+</html>
