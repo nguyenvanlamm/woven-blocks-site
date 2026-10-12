@@ -44,9 +44,16 @@ Woven Blocks · Daily · Oct 12, 2026
 
 ## 04 Left alone
 
-Plays offline. Saves after every move. No ads, no account, no tracking. Light and dark themes, sound and vibration on or off, statistics (best score, games, average, lines, best combo, streaks).
+Saves after every move. No ads, no account, no tracking. The apps play offline; the web version needs a connection. Light and dark themes, sound and vibration on or off, statistics (best score, games, average, lines, best combo, streaks).
 
 Not in the game: coins, lives, shop, leaderboards, accounts, undo, levels.
+
+| | Many block puzzle apps | Woven Blocks |
+|---|---|---|
+| Ads | Between games, or to continue | None, ever |
+| Trays | Random; some can't be placed | Every tray fits, in some order |
+| Tracking | Ad and analytics SDKs | None |
+| Extras | Coins, lives, boosters | Just the board |
 
 ## 05 Get it
 

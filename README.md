@@ -38,18 +38,29 @@ The design sources live in the game repo under `design/landing/`: the brief, the
 
 ## Updating the game in `play/`
 
-Run this in the game repo:
+Build in the game repo:
 
 ```bash
-flutter build web --release --base-href /woven-blocks-site/play/ --no-web-resources-cdn -o /tmp/wb-web
+flutter build web --wasm --release --base-href /woven-blocks-site/play/ --no-web-resources-cdn \
+  --dart-define=SHARE_URL=https://nguyenvanlamm.github.io/woven-blocks-site/ -o /tmp/wb-web
+```
+
+Then, in this repo:
+
+```bash
 rm -rf play && cp -a /tmp/wb-web play
 rm -f play/.last_build_id
 find play/canvaskit -name '*.symbols' -delete
-rm -rf play/canvaskit/skwasm* play/canvaskit/wimp* play/canvaskit/*webparagraph
+rm -rf play/canvaskit/wimp* play/canvaskit/*webparagraph
+tools/subset-play-fonts.sh play   # needs fonttools
 ```
 
-- `--no-web-resources-cdn` makes the build serve its own CanvasKit, so the game loads nothing from Google's servers. The privacy policy states this.
-- The JS build only loads `canvaskit/canvaskit.*` and `canvaskit/chromium/canvaskit.*`. The skwasm, wimp and webparagraph engines and the `.symbols` files are not needed.
+- `--wasm` loads about 15% fewer bytes than the JS build: about 2.8 MB instead of 3.4 MB on the wire. Browsers with WasmGC (Chrome 119+, Firefox 120+, Safari 18.2+) run `main.dart.wasm` on `canvaskit/skwasm.*`. Firefox and Safari use `skwasm_heavy.*`. Older browsers fall back to `main.dart.js` on `canvaskit/canvaskit.*` or `canvaskit/chromium/canvaskit.*`. Keep all of these.
+- Without cross-origin isolation, which GitHub Pages can't enable, skwasm runs single-threaded and logs a console warning. That is expected.
+- `SHARE_URL` puts the link in the Daily and Classic share texts. Without it, shared results carry no link.
+- `--no-web-resources-cdn` makes the build serve its own engine, so the game loads nothing from Google's servers. The privacy policy states this.
+- `subset-play-fonts.sh` cuts the fonts to Latin, about 45% smaller. The ranges are broad because a missing glyph would make Flutter fetch a fallback font from fonts.gstatic.com. If the game gains new symbols or languages, extend the ranges.
+- The wimp and webparagraph engines and the `.symbols` files are not needed.
 - The game uses path URLs. When a game screen is reloaded, GitHub Pages serves `404.html`, which sends the visitor back to `play/`. The board is saved, so nothing is lost. If the site moves to another path or a custom domain, update `<base href>` in `404.html` and rebuild with the new `--base-href`.
 
 ## Search and AI files
